@@ -57,4 +57,28 @@ update cliente set idBairro = 3 where idCliente in (4,5);
 
 update cliente set idBairro = 4 where idCliente = 7;
 
+create table uf (
+	idUf integer not null,
+	nome varchar(30) not null,
+	sigla char(2) not null,
+
+	constraint pk_ufd_idUf primary key(idUf),
+	constraint un_ufd_nome unique(nome),
+	constraint un_ufd_sigla unique(sigla)
+);
+
+insert into uf (idUf,nome,sigla) values (1,'Santa Catarina', 'SC');
+
+insert into uf (idUf,nome,sigla) values (2,'Paraná', 'PR');
+
+insert into uf (idUf,nome,sigla) values (3,'São Pauo', 'SP');
+
+insert into uf (idUf,nome,sigla) values (4,'Minas Gerais', 'MG');
+
+insert into uf (idUf,nome,sigla) values (5,'Rio Grande do Sul', 'RS');
+
+insert into uf (idUf,nome,sigla) values (6,'Rio de Janeiro', 'RJ');
+
+select * from uf
+
 
