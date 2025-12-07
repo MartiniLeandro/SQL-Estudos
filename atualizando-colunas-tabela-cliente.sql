@@ -81,4 +81,59 @@ insert into uf (idUf,nome,sigla) values (6,'Rio de Janeiro', 'RJ');
 
 select * from uf
 
+create table municipio(
+	idMunicipio integer not null,
+	nome varchar(30) not null,
+	idUf integer not null,
+
+	constraint pk_mnc_idMunicipio primary key(idMunicipio),
+	constraint un_mnc_nome unique(nome),
+	constraint fk_mnc_idUf foreign key(idUf) references uf(idUf)
+);
+
+insert into municipio(idMunicipio,nome,idUf) values (1, 'Porto União', 1);
+
+insert into municipio(idMunicipio,nome,idUf) values (2, 'Canoinhas', 1);
+
+insert into municipio(idMunicipio,nome,idUf) values (3, 'Porto Vitória', 2);
+
+insert into municipio(idMunicipio,nome,idUf) values (4, 'General Carneiro', 2);
+
+insert into municipio(idMunicipio,nome,idUf) values (5, 'São Paulo', 3);
+
+insert into municipio(idMunicipio,nome,idUf) values (6, 'Rio de Janeiro', 6);
+
+insert into municipio(idMunicipio,nome,idUf) values (7, 'Uberlândia', 4);
+
+insert into municipio(idMunicipio,nome,idUf) values (8, 'Porto Alegre', 5);
+
+insert into municipio(idMunicipio,nome,idUf) values (9, 'União da Vitória', 2);
+
+select * from municipio
+
+alter table cliente drop uf;
+
+alter table cliente drop municipio;
+
+alter table cliente add idMunicipio integer;
+
+alter table cliente add constraint fk_cln_id foreign key(idMunicipio) references municipio(idMunicipio);
+
+update cliente set idMunicipio = 1 where idCliente in (1,2,10,11);
+
+update cliente set idMunicipio = 2 where idCliente in (3,12);
+
+update cliente set idMunicipio = 3 where idCliente in (4);
+
+update cliente set idMunicipio = 4 where idCliente in (5);
+
+update cliente set idMunicipio = 5 where idCliente in (6,13);
+
+update cliente set idMunicipio = 6 where idCliente in (7);
+
+update cliente set idMunicipio = 7 where idCliente in (8);
+
+update cliente set idMunicipio = 8 where idCliente in (9);
+
+update cliente set idMunicipio = 9 where idCliente in (14,15);
 
