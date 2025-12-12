@@ -38,6 +38,5 @@ select idVendedor, sum(valor) from pedido group by idVendedor;
 
 select idTransportadora, sum(valor) from pedido group by idTransportadora;
 
-
-
+select data_pedido, sum(valor) from pedido group by data_pedido;
 
