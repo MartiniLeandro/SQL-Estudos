@@ -40,3 +40,40 @@ select idTransportadora, sum(valor) from pedido group by idTransportadora;
 
 select data_pedido, sum(valor) from pedido group by data_pedido;
 
+select idVendedor, idTransportadora, idCliente, sum(valor) from pedido group by idCliente, idVendedor, idTransportadora;
+
+select data_pedido, sum(valor) from pedido group by data_pedido having sum(valor) > 200 and data_pedido between '2008-04-01' and '2009-12-10';
+
+select avg(valor) from pedido where idVendedor = 1;
+
+select avg(valor) from pedido where idCliente = 15;
+
+select count(idPedido) from pedido where idTransportadora = 1;
+
+select idVendedor, count(idPedido) from pedido group by idVendedor;
+
+select idCliente, count(idPedido) from pedido group by idCliente;
+
+select count(idPedido) from pedido where data_pedido between '2008-04-15' and '2008-04-25';
+
+select count(idPedido) from pedido where valor > 1000;
+
+select count(quantidade) from pedido_produto where idProduto = 1;
+
+select idProduto, sum(quantidade) from pedido_produto group by idProduto;
+
+select idPedido, sum(valor_unitario) from pedido_produto group by idPedido;
+
+select idPedido, sum(quantidade) from pedido_produto group by idPedido;
+
+select sum(valor_unitario) from pedido_produto;
+
+select avg(valor_unitario) from pedido_produto where idpedido = 6;
+
+select max(valor_unitario) from pedido_produto;
+
+select min(valor_unitario) from pedido_produto;
+
+select idpedido, sum(quantidade) from pedido_produto group by idpedido;
+
+select sum(valor_unitario) from pedido_produto;
