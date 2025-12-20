@@ -18,9 +18,13 @@ select
 	mcp.nome as municipio,
 	uf.nome as unidade_federacao,
 	brr.nome as bairro,
-	cln.cpf, cln.rg,
+	cln.cpf, 
+	cln.rg,
 	cln.data_nascimento,
-	cln.genero,
+	case cln.genero
+		when 'M' then 'Masculino'
+		when 'F' then 'Feminino'
+	end as genero,
 	cln.logradouro,
 	cln.numero,
 	cln.observacoes
@@ -50,7 +54,6 @@ select
 	trn.nome as transportadora,
 	trn.logradouro,
 	trn.numero,
-	mcp.nome as municipio,
 	uf.nome as unidade_federacao,
 	uf.sigla as sigla
 from
