@@ -16,3 +16,16 @@ select max(ano_lancamento) from livro_treino;
 select avg(ano_lancamento) from livro_treino;
 select editora, count(*) from livro_treino group by editora;
 select editora, avg(ano_Lancamento) from livro_treino group by editora;
+
+select autor, count(*)from livro_treino group by autor having count(*) > 1;
+select editora, count(*) from livro_treino group by editora having count(*) > 2;
+select autor, min(ano_lancamento) from livro_treino group by autor having min(ano_lancamento) < 1900;
+
+select * from livro_treino where ano_lancamento = (select min(ano_lancamento) from livro_treino);
+select * from livro_treino where ano_lancamento = (select max(ano_lancamento) from livro_treino);
+select * from livro_treino where ano_lancamento > (select avg(ano_lancamento) from livro_treino);
+select editora from livro_treino group by editora having count(*) = (select max(total) from (select count(*) as total from livros_treino group by editora));
+
+
+
+
