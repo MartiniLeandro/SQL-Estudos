@@ -140,3 +140,8 @@ select prd.nome,ctg.nome, prd.preco from produto as prd inner join categoria as 
 select pdd.idPedido,itp.quantidade from item_pedido as itp inner join pedido as pdd on itp.idPedido = pdd.idPedido;
 select pdd.idPedido,itp.quantidade from item_pedido as itp inner join pedido as pdd on itp.idPedido = pdd.idPedido where itp.quantidade >= 3;
 
+select cln.nome, count(pdd.idPedido) as pedidos from pedido as pdd inner join cliente as cln on pdd.idCliente = cln.idCliente group by cln.nome order by pedidos desc;
+select ctg.nome as categoria, sum(quantidade * preco_unitario) as total from item_pedido as itp inner join produto as prd on itp.idProduto = prd.idProduto inner join categoria as ctg on prd.idCategoria = ctg.idCategoria group by categoria;
+select avg(quantidade * preco_unitario) as ticket_medio from item_pedido
+select cln.nome as cliente, sum(quantidade * preco_unitario) as total from item_pedido as itp inner join pedido as pdd on itp.idPedido = pdd.idPedido inner join cliente as cln on pdd.idCliente = cln.idCliente group by cliente having  sum(quantidade * preco_unitario) > 1000
+
