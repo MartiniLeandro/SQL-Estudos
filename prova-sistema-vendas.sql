@@ -145,3 +145,13 @@ select ctg.nome as categoria, sum(quantidade * preco_unitario) as total from ite
 select avg(quantidade * preco_unitario) as ticket_medio from item_pedido
 select cln.nome as cliente, sum(quantidade * preco_unitario) as total from item_pedido as itp inner join pedido as pdd on itp.idPedido = pdd.idPedido inner join cliente as cln on pdd.idCliente = cln.idCliente group by cliente having  sum(quantidade * preco_unitario) > 1000
 
+create view info_pedido as
+select pdd.idPedido, pdd.data, (itp.preco_unitario * quantidade) as valor_total from pedido as pdd inner join item_pedido as itp on itp.idPedido = pdd.idPedido;
+create function id_gastos_view(idCln integer) returns float language plpgsql as 
+$$
+begin
+	return sum(itp.preco_unitario * itp.quantidade) as valor_gasto from item_pedido as itp inner join pedido as pdd on itp.idPedido = pdd.idPedido where pdd.idCliente = idCln;
+	end;
+$$;
+drop function id_gastos_view(idCln integer)
+select id_gastos_view(2);
